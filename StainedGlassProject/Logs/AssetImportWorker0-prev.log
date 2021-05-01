@@ -15,100 +15,13 @@ E:/Olli/ProjectRepos/GraphicsFinal/StainedGlassShaders/StainedGlassProject
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-56112
+57164
 Successfully changed project path to: E:/Olli/ProjectRepos/GraphicsFinal/StainedGlassShaders/StainedGlassProject
 E:/Olli/ProjectRepos/GraphicsFinal/StainedGlassShaders/StainedGlassProject
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 39.49 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 29.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.2f1 (068178b99f32)
 [Subsystems] Discovering subsystems at path E:/File Sync/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path E:/Olli/ProjectRepos/GraphicsFinal/StainedGlassShaders/StainedGlassProject/Assets
 GfxDevice: creating device client; threaded=0
-Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
-    Vendor:   
-    VRAM:     6052 MB
-    Driver:   27.21.14.5671
-Initialize mono
-Mono path[0] = 'E:/File Sync/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed'
-Mono path[1] = 'E:/File Sync/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'E:/File Sync/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56816
-Begin MonoManager ReloadAssembly
-Registering precompiled unity dll's ...
-Register platform support module: E:/File Sync/Unity/Hub/Editor/2020.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001539 seconds.
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 28.39 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.549 seconds
-Platform modules already initialized, skipping
-Registering precompiled user dll's ...
-Registered in 0.000862 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.27 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.067 seconds
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 0.28 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1102 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 57.7 MB.
-System memory in use after: 57.8 MB.
-
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1544.
-Total: 2.329200 ms (FindLiveObjects: 0.179200 ms CreateObjectMapping: 0.037800 ms MarkObjects: 2.000700 ms  DeleteObjects: 0.109400 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Scripts/SpotlightScript.cs
-  artifactKey: Guid(0c24594caec62e44ba13e7708b6f2a1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SpotlightScript.cs using Guid(0c24594caec62e44ba13e7708b6f2a1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb0d7cd56d0e972387feb89f183a91e0') in 0.047690 seconds
-  Import took 0.057971 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000817 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.27 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.988 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 57.7 MB.
-System memory in use after: 57.8 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1546.
-Total: 2.031000 ms (FindLiveObjects: 0.212100 ms CreateObjectMapping: 0.036600 ms MarkObjects: 1.714800 ms  DeleteObjects: 0.065900 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 1565.497774 seconds.
-  path: Assets/Scripts/TemplateDontUse.shader
-  artifactKey: Guid(4e9e31b500d93f14c845e58a9a5c685a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/TemplateDontUse.shader using Guid(4e9e31b500d93f14c845e58a9a5c685a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0d1254bbd47946a486d38e7d8703ef9') in 0.022934 seconds
-  Import took 0.038447 seconds .
-
-AssetImportWorkerClient::OnTransportError - code=2 error=End of file
