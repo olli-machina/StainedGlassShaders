@@ -4,6 +4,7 @@ Shader "Testing/UnlitTemplate"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Position("Light Pos", vector) = (11,-6,0)
+        _Ambient("Ambient", vector) = 0
         _Diffuse("Diffuse", vector) = 0
         _Specular("Specular", vector) = 0
         _Constant("Constant", float) = 0f
@@ -59,6 +60,10 @@ Shader "Testing/UnlitTemplate"
 
                 float distance = length(_Position - FragPos);//??
                 float attenuation = 1.0 / (_Constant + _Linear * distance + _Quadratic * (distance * distance));
+
+                _Ambient *= attenuation;
+                _Diffuse *= attenuation;
+                _Specular *= attenuation;
 
                 return col;
             }
