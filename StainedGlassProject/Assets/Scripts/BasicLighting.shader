@@ -7,6 +7,12 @@ Shader "Unlit/BasicLighting"
         _AmbientStrength("Ambient Strength", Range(0, 1)) = 0.1
         _SpecularStrength("Specular Strength", Range(0, 1)) = 0.1
         _SpecularReflectivity("Specular Reflectivity", int) = 32
+
+        _GlassLocation("Glass Location", vector) = (0, 0, 0, 0)
+        _GlassScale("Glass Scale", vector) = (0, 0, 0, 0)
+        _GlassTint("Glass Tint", Color) = (1, 1, 1, 1)
+        _GlassTintStrength("Glass Tint Strength", Range(0, 1)) = 0.1
+
         //_LightPos("Light Position", vector) = (0, 0, 0, 0)
         //_LightColor("Light Color", Color) = (1, 1, 1, 1)
     }
@@ -50,6 +56,10 @@ Shader "Unlit/BasicLighting"
             float3 _LightPos;
             float _SpecularStrength;
             int _SpecularReflectivity;
+            float3 _GlassLocation;
+            float3 _GlassScale;
+            float3 _GlassTint;
+            float _GlassTintStrength;
             //float3 _LightColor;
 
             float4 _LightColor0;
@@ -94,8 +104,33 @@ Shader "Unlit/BasicLighting"
             float3 specularValueColor = _SpecularStrength * spec * _LightColor0;
 
 
+
+            // Shadow mapping
+            float3 step = (i.worldSpace -_WorldSpaceLightPos0.xyz) * 0.01;
+            bool shadow = false;
+            
+            float3 halfScale = _GlassScale.xyz * 0.5;
+
+            for (int i = 0; i < 100; i++)
+            {
+                float3 stepPos = (_WorldSpaceLightPos0.xyz + (i * step));
+                if (stepPos.x > _GlassLocation.x - halfScale.x && stepPos.x < _GlassLocation.x + halfScale.x
+                    && stepPos.y > _GlassLocation.y - halfScale.y && stepPos.y < _GlassLocation.y + halfScale.y
+                    && stepPos.z > _GlassLocation.z - halfScale.z && stepPos.z < _GlassLocation.z + halfScale.z)
+                {
+                    shadow = true;
+                    break;
+                }
+            }
+
+
             // combine
-            float3 result = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
+            float3 result;
+            float3 phong = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
+            if (shadow)
+                result = phong + (_GlassTint * _GlassTintStrength);
+            else
+                result = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
 
             fixed4 col = vector(result, 1.0);
                 
