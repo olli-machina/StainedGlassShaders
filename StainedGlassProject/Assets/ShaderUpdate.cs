@@ -6,10 +6,10 @@ using UnityEngine;
 public class ShaderUpdate : MonoBehaviour
 {
 
-    public GameObject cube;
+    public GameObject[] glass;
 
-    public Material mat;
-    public Material glassMat;
+    public Material[] mat;
+    public Material[] glassMat;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +20,35 @@ public class ShaderUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mat.SetVector("_GlassLocation", cube.transform.position);
-        mat.SetVector("_GlassScale", cube.transform.localScale);
-        mat.SetVector("_GlassTint", glassMat.GetColor("_Color"));
+        List<Vector4> locationArray = new List<Vector4>(100);
+        List<Vector4> scaleArray = new List<Vector4>(100);
+        List<Vector4> colorArray = new List<Vector4>(100);
+
+        
+
+
+        for (int i = 0; i<glass.Length; i++)
+        {
+            locationArray.Add(glass[i].transform.position);
+            scaleArray.Add(glass[i].transform.localScale);
+            colorArray.Add(glassMat[i].GetColor("_Color"));
+        }
+
+        for (int i = locationArray.Count; i < 100; i++)
+        {
+            locationArray.Add(new Vector4(0, 0, 0, 0));
+            scaleArray.Add(new Vector4(0, 0, 0, 0));
+            colorArray.Add(new Vector4(0, 0, 0, 0));
+        }
+
+        for (int i = 0; i<mat.Length; i++)
+        {
+            mat[i].SetVectorArray("_GlassLocation", locationArray);
+            mat[i].SetVectorArray("_GlassScale", scaleArray);
+            mat[i].SetVectorArray("_GlassTint", colorArray);
+            mat[i].SetFloat("_NumOfGlass", glass.Length);
+        }
+
+        
     }
 }

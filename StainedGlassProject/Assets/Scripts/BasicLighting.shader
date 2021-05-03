@@ -8,9 +8,9 @@ Shader "Unlit/BasicLighting"
         _SpecularStrength("Specular Strength", Range(0, 1)) = 0.1
         _SpecularReflectivity("Specular Reflectivity", int) = 32
 
-        _GlassLocation("Glass Location", vector) = (0, 0, 0, 0)
-        _GlassScale("Glass Scale", vector) = (0, 0, 0, 0)
-        _GlassTint("Glass Tint", Color) = (1, 1, 1, 1)
+        //_GlassLocation("Glass Location", vector) = (0, 0, 0, 0)
+        //_GlassScale("Glass Scale", vector) = (0, 0, 0, 0)
+        //_GlassTint("Glass Tint", Color) = (1, 1, 1, 1)
         _GlassTintStrength("Glass Tint Strength", Range(0, 1)) = 0.1
 
         //_LightPos("Light Position", vector) = (0, 0, 0, 0)
@@ -56,10 +56,13 @@ Shader "Unlit/BasicLighting"
             float3 _LightPos;
             float _SpecularStrength;
             int _SpecularReflectivity;
-            float3 _GlassLocation;
-            float3 _GlassScale;
-            float3 _GlassTint;
+
+            float3 _GlassLocation[100];
+            float3 _GlassScale[100];
+            float3 _GlassTint[100];
             float _GlassTintStrength;
+
+            int _NumOfGlass;
             //float3 _LightColor;
 
             float4 _LightColor0;
@@ -109,26 +112,45 @@ Shader "Unlit/BasicLighting"
             float3 step = (i.worldSpace -_WorldSpaceLightPos0.xyz) * 0.01;
             bool shadow = false;
             
-            float3 halfScale = _GlassScale.xyz * 0.5;
+            //float3 halfScale = _GlassScale.xyz * 0.5;
 
+            float3 totalGlassTint = (0, 0, 0);
+            bool addGlassTint[100];
             for (int i = 0; i < 100; i++)
             {
-                float3 stepPos = (_WorldSpaceLightPos0.xyz + (i * step));
-                if (stepPos.x > _GlassLocation.x - halfScale.x && stepPos.x < _GlassLocation.x + halfScale.x
-                    && stepPos.y > _GlassLocation.y - halfScale.y && stepPos.y < _GlassLocation.y + halfScale.y
-                    && stepPos.z > _GlassLocation.z - halfScale.z && stepPos.z < _GlassLocation.z + halfScale.z)
-                {
-                    shadow = true;
-                    break;
+                addGlassTint[i] = false;
+            }
+            
+            for (int i = 0; i < 100; i++)
+            {
+                for (int j = 0; j < _NumOfGlass; j++)
+                    {
+
+                    float3 stepPos = (_WorldSpaceLightPos0.xyz + (i * step));
+                    if (stepPos.x > _GlassLocation[j].x - (_GlassScale[j].x * 0.5) && stepPos.x < _GlassLocation[j].x + (_GlassScale[j].x * 0.5)
+                        && stepPos.y > _GlassLocation[j].y - (_GlassScale[j].y * 0.5) && stepPos.y < _GlassLocation[j].y + (_GlassScale[j].y * 0.5)
+                        && stepPos.z > _GlassLocation[j].z - (_GlassScale[j].z * 0.5) && stepPos.z < _GlassLocation[j].z + (_GlassScale[j].z * 0.5))
+                    {
+                        shadow = true;
+                        
+                        addGlassTint[j] = true;
+                        break;
+                    }
                 }
+
             }
 
+            for (int i = 0; i < _NumOfGlass; i++)
+            {
+                if(addGlassTint[i])
+                    totalGlassTint += _GlassTint[i];
+            }
 
             // combine
             float3 result;
             float3 phong = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
             if (shadow)
-                result = phong + (_GlassTint * _GlassTintStrength);
+                result = phong + (totalGlassTint * _GlassTintStrength);
             else
                 result = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
 
