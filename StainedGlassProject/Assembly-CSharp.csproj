@@ -56,11 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ShaderUpdate.cs" />
     <Compile Include="Assets\SpawnGlass.cs" />
+    <Compile Include="Assets\ShaderUpdate.cs" />
+    <Compile Include="Assets\PassAnimationData.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\BasicLighting.shader" />
+     <None Include="Assets\Scripts\AnimationShader.shader" />
      <None Include="Assets\Scripts\Idkman.shader" />
      <None Include="Assets\Scripts\UnlitTemplate.shader" />
      <None Include="Assets\Scripts\ShaderLight.shader" />

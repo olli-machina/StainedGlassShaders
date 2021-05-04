@@ -14,7 +14,14 @@ public class ShaderUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < glass.Length; i++)
+        {
+            if (glass[i])
+            {
+                glass[i].GetComponent<Renderer>().sharedMaterial.SetVector("_CurrentLocation", Vector4.zero);
+                
+            }
+        }
     }
 
     // Update is called once per frame
@@ -31,7 +38,7 @@ public class ShaderUpdate : MonoBehaviour
         {
             if (glass[i])
             {
-                locationArray.Add(glass[i].transform.position);
+                locationArray.Add(glass[i].GetComponent<PassAnimationData>().currentPos);
                 scaleArray.Add(glass[i].transform.localScale);
                 colorArray.Add(glassMat[i].GetColor("_Color"));
             }
