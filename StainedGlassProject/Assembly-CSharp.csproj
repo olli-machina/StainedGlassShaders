@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ShaderUpdate.cs" />
+    <Compile Include="Assets\SpawnGlass.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\BasicLighting.shader" />

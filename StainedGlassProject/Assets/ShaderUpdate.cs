@@ -29,9 +29,12 @@ public class ShaderUpdate : MonoBehaviour
 
         for (int i = 0; i<glass.Length; i++)
         {
-            locationArray.Add(glass[i].transform.position);
-            scaleArray.Add(glass[i].transform.localScale);
-            colorArray.Add(glassMat[i].GetColor("_Color"));
+            if (glass[i])
+            {
+                locationArray.Add(glass[i].transform.position);
+                scaleArray.Add(glass[i].transform.localScale);
+                colorArray.Add(glassMat[i].GetColor("_Color"));
+            }
         }
 
         for (int i = locationArray.Count; i < 100; i++)
