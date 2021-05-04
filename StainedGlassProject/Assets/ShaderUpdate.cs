@@ -38,7 +38,10 @@ public class ShaderUpdate : MonoBehaviour
         {
             if (glass[i])
             {
-                locationArray.Add(glass[i].GetComponent<PassAnimationData>().currentPos);
+                if(glass[i].GetComponent<PassAnimationData>())
+                    locationArray.Add(glass[i].GetComponent<PassAnimationData>().currentPos);
+                else
+                    locationArray.Add(glass[i].transform.position);
                 scaleArray.Add(glass[i].transform.localScale);
                 colorArray.Add(glassMat[i].GetColor("_Color"));
             }

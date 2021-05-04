@@ -258,6 +258,7 @@ Shader "Unlit/BasicLighting"
 
             //float3 halfScale = _GlassScale.xyz * 0.5;
 
+            // Adding glass tints!
             float3 totalGlassTint = (0, 0, 0);
             bool addGlassTint[100];
             for (int i = 0; i < 100; i++)
@@ -294,7 +295,8 @@ Shader "Unlit/BasicLighting"
             float3 result;
             float3 phong = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
             if (shadow)
-                result = phong + (totalGlassTint * _GlassTintStrength);
+                result = 
+                phong + (totalGlassTint * _GlassTintStrength);
             else
                 result = (ambientValueColor + diffuseValueColor + specularValueColor) * tex.xyz;
 
